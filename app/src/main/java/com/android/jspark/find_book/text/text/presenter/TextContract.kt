@@ -10,10 +10,10 @@ interface TextContract {
         fun showData()
         fun hideProgress()
         fun showProgress()
+        fun showLoadFail( errorMessage : String)
     }
 
     interface Presenter{
         fun searchData(bookName : String)
-        fun loadData()
     }
 }

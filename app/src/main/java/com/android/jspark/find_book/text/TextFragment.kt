@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 
 import com.android.jspark.find_book.R
@@ -24,6 +25,7 @@ class TextFragment : Fragment(), TextContract.View
 {
     private lateinit var btn_search : Button
     private lateinit var edt_search : EditText
+    private lateinit var progressBar : ProgressBar
 
     private val textPresenter : TextPresenter by lazy {
         TextPresenter(this, NaverRepository)
@@ -31,17 +33,22 @@ class TextFragment : Fragment(), TextContract.View
 
     override fun showData()
     {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+    }
+
+    override fun showLoadFail( errorMessage : String)
+    {
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
     override fun hideProgress()
     {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        progressBar.visibility = View.GONE
     }
 
     override fun showProgress()
     {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        progressBar.visibility = View.VISIBLE
     }
 
     override fun onCreate(savedInstanceState : Bundle?)
@@ -55,19 +62,18 @@ class TextFragment : Fragment(), TextContract.View
 
         btn_search = view.findViewById(R.id.btn_search) as Button
         edt_search = view.findViewById(R.id.edt_search) as EditText
+        progressBar = view.findViewById(R.id.progressBar) as ProgressBar
 
         btn_search.setOnClickListener {
 
             if(edt_search.text.toString().isNullOrBlank()){
-                Toast.makeText(context, "검색어를 입력하세요" , Toast.LENGTH_SHORT).show()
+                showLoadFail("검색어를 입력하세요")
             }
 
             else {
-                Toast.makeText(context, edt_search.text.toString() , Toast.LENGTH_SHORT).show()
                 textPresenter.searchData(edt_search.text.toString())
             }
         }
-
         return view
     }
 }
