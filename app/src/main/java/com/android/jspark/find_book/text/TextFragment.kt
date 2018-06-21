@@ -14,6 +14,7 @@ import android.widget.EditText
 import android.widget.Toast
 
 import com.android.jspark.find_book.R
+import com.android.jspark.find_book.data.naver.NaverRepository
 import com.android.jspark.find_book.text.text.presenter.TextContract
 import com.android.jspark.find_book.text.text.presenter.TextPresenter
 import kotlinx.android.synthetic.main.fragment_text.*
@@ -25,7 +26,7 @@ class TextFragment : Fragment(), TextContract.View
     private lateinit var edt_search : EditText
 
     private val textPresenter : TextPresenter by lazy {
-        TextPresenter(this)
+        TextPresenter(this, NaverRepository)
     }
 
     override fun showData()

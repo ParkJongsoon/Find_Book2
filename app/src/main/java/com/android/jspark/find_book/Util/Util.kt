@@ -2,6 +2,7 @@ package com.android.jspark.find_book.Util
 
 import android.support.annotation.IdRes
 import android.support.v7.app.AppCompatActivity
+import retrofit2.Retrofit
 
 /**
  * Created by js_park on 2018-06-12.
