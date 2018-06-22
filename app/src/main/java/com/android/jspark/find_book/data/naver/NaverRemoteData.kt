@@ -18,5 +18,5 @@ class NaverRemoteData : NaverDataSource {
 
     private val naverServiceInterface = createRetrofit(ServiceInterface::class.java, NAVER_URL)
 
-    override fun getBoosData(bookname : String) = naverServiceInterface.getBooksData(bookname)
+    override fun getBooksData(bookname : String) = naverServiceInterface.getBooksData(bookname)
 }

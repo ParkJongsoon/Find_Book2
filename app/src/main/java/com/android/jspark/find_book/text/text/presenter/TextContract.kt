@@ -7,7 +7,6 @@ package com.android.jspark.find_book.text.text.presenter
 interface TextContract {
 
     interface View {
-        fun showData()
         fun hideProgress()
         fun showProgress()
         fun showLoadFail( errorMessage : String)

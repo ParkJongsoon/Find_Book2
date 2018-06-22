@@ -9,9 +9,8 @@ import retrofit2.Call
 
 object NaverRepository : NaverDataSource {
 
-
     private val naverRemoteData = NaverRemoteData()
 
-    override fun getBoosData(bookname : String) = naverRemoteData.getBoosData(bookname)
+    override fun getBooksData(bookname : String) = naverRemoteData.getBooksData(bookname)
 
 }

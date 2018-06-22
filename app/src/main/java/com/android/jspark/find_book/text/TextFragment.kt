@@ -4,21 +4,21 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 
 import com.android.jspark.find_book.R
 import com.android.jspark.find_book.data.naver.NaverRepository
+import com.android.jspark.find_book.text.adapter.BooksRecyclerAdapter
 import com.android.jspark.find_book.text.text.presenter.TextContract
 import com.android.jspark.find_book.text.text.presenter.TextPresenter
 import kotlinx.android.synthetic.main.fragment_text.*
+import kotlinx.android.synthetic.main.fragment_text.view.*
 
 
 class TextFragment : Fragment(), TextContract.View
@@ -28,12 +28,11 @@ class TextFragment : Fragment(), TextContract.View
     private lateinit var progressBar : ProgressBar
 
     private val textPresenter : TextPresenter by lazy {
-        TextPresenter(this, NaverRepository)
+        TextPresenter(this, NaverRepository, bookRecyclerAdapter)
     }
 
-    override fun showData()
-    {
-
+    private val bookRecyclerAdapter : BooksRecyclerAdapter by lazy {
+        BooksRecyclerAdapter(this@TextFragment.context)
     }
 
     override fun showLoadFail( errorMessage : String)
@@ -63,6 +62,13 @@ class TextFragment : Fragment(), TextContract.View
         btn_search = view.findViewById(R.id.btn_search) as Button
         edt_search = view.findViewById(R.id.edt_search) as EditText
         progressBar = view.findViewById(R.id.progressBar) as ProgressBar
+
+
+        view.recyclerView.run {
+            adapter = bookRecyclerAdapter
+            layoutManager  = LinearLayoutManager(this@TextFragment.context)
+        }
+
 
         btn_search.setOnClickListener {
 

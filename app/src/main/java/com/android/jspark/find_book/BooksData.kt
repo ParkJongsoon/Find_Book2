@@ -8,5 +8,18 @@ data class BooksData(
         val total: Int,
         val start: Int,
         val display: Int,
-        val items: List<Item>
+        val items: List<book>
+)
+
+data class book(
+        val title: String,
+        val link: String,
+        val image: String,
+        val author: String,
+        val price: String,
+        val discount: String,
+        val publisher: String,
+        val pubdate: String,
+        val isbn: String,
+        val description: String
 )
